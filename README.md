@@ -6,7 +6,7 @@ This is a Docker Swarm environment geared towards use with Magento 2. The enviro
 
 Utilize the [`Issues`](https://github.com/loganstellway/magento2-docker-swarm/issues) section to track goals and issues. 
 
-## Pushing
+**Pushing**
 
 Branch from and create merge requests to the `dev` branch. 
 
@@ -14,13 +14,10 @@ Branch from and create merge requests to the `dev` branch.
 
 The `.docker-compose/config` directory contains several folders with configuation files. 
 
-  - **httpd**
-    - [httpd:2.4-alpine](https://store.docker.com/images/httpd)
-    - No longer being used as **nginx** has been determined to be much more efficient. 
   - **mysql**
     - [mysql:5.7](https://store.docker.com/images/mysql)
     - [`init.sh`](.docker-compose/config/mysql/init.sh) is executed whenever a **mysql** container instance is launched (refer to [official documentation](https://store.docker.com/images/mysql) for more information). 
-    - The goal is to move away from this image and utilize [**MySQL NDB Cluster**](https://dev.mysql.com/doc/mysql-cluster-excerpt/5.6/en/)
+    - The goal is to move away from this image and utilize [MySQL NDB Cluster](https://dev.mysql.com/doc/mysql-cluster-excerpt/5.6/en/) / [Issue #1](https://github.com/loganstellway/magento2-docker-swarm/issues/1)
   - **nginx**
     - [nginx:stable-alpine](https://store.docker.com/images/nginx)
     - The [`certs`](.docker-compose/nginx/certs) subdirectory is configured to be mounted to `nginx` container instances. 
@@ -33,9 +30,7 @@ The `.docker-compose/config` directory contains several folders with configuatio
     - Not currently being used. 
   - **redis**
     - [redis:3-alpine](https://store.docker.com/images/redis)
-    - The recommended use is to utilize Redis for session storage. Redis is not initally cluster-ready and requires some setup:
-      - [Cluster Tutorial](https://redis.io/topics/cluster-tutorial)
-      - [Cluster Specification](https://redis.io/topics/cluster-spec)
+    - The recommended use is to utilize Redis for session storage. Redis is not initally cluster-ready and requires some setup [Issue #2](https://github.com/loganstellway/magento2-docker-swarm/issues/2)
 
 ## Magento 2 Requirements
 
