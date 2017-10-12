@@ -6,7 +6,7 @@ This is a Docker Swarm environment geared towards use with Magento 2. The enviro
 
 Utilize the [`Issues`](https://github.com/loganstellway/magento2-docker-swarm/issues) section to track goals and issues. 
 
-**Pushing**
+### Pushing
 
 Branch from and create merge requests to the `dev` branch. 
 
