@@ -1,0 +1,62 @@
+version: "3"
+services:
+  php:
+    image: lstellway/php:7.1-fpm-alpine-magento2-full
+    networks:
+      - webnet
+      - dbnet
+    volumes:
+      - ./public_html/:/var/www/html/
+      - ./.docker-compose/config/php/:/docker-entrypoint-initphp.d/
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          memory: 768M
+      restart_policy:
+        condition: on-failure
+  nginx:
+    image: nginx:stable-alpine
+    depends_on:
+      - php
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - webnet
+    volumes:
+      - ./public_html/:/var/www/html/
+      - ./.docker-compose/config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker-compose/config/nginx/certs/:/etc/nginx/certs
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./.docker-compose/config/mysql/:/docker-entrypoint-initdb.d/
+      - ./.docker-compose/data/mysql/:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=Password123
+    networks:
+      - dbnet
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+  redis:
+    image: redis:3-alpine
+    volumes:
+      - ./.docker-compose/data/redis/:/data/
+    networks:
+      - dbnet
+networks:
+  webnet:
+  dbnet:
