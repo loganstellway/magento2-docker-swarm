@@ -1,3 +1,12 @@
+> ⚠️ I have not visited this project in a while and am planning to archive it.
+> There are several great examples out there for working with Magento 2 locally via Docker. 
+> (See [Warden](https://warden.dev/))
+> 
+> I would be happy to put something together if anybody thinks there is room for a local Docker development environment.
+> Please feel free to reach out via the [issue board](https://github.com/lstellway/magento2-docker-swarm/issues).
+
+
+
 # Docker Swarm - Magento 2
 
 This is a Docker Swarm environment geared towards use with Magento 2. The environment is not restricted to use with Magento 2, but is a clustered environment that is great for use with many PHP projects. 
